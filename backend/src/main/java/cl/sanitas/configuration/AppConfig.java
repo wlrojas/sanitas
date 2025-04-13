@@ -1,6 +1,9 @@
 package cl.sanitas.configuration;
 
-import cl.sanitas.application.port.UserRepository;
+import cl.sanitas.application.port.CalificacionRepository;
+import cl.sanitas.application.port.UsuarioRepository;
+import cl.sanitas.application.usecase.BuscarUsuarioUseCase;
+import cl.sanitas.application.usecase.CalificacionUseCase;
 import cl.sanitas.application.usecase.CrearUsuarioUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +12,17 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    public CrearUsuarioUseCase crearUsuarioUseCase(UserRepository userRepository) {
-        return new CrearUsuarioUseCase(userRepository);
+    public CrearUsuarioUseCase crearUsuarioUseCase(UsuarioRepository usuarioRepository) {
+        return new CrearUsuarioUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public BuscarUsuarioUseCase buscarUsuarioUseCase(UsuarioRepository usuarioRepository) {
+        return new BuscarUsuarioUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public CalificacionUseCase calificacionUseCase(CalificacionRepository calificacionRepository) {
+        return new CalificacionUseCase(calificacionRepository);
     }
 }
