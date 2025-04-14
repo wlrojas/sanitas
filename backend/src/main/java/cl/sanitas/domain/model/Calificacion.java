@@ -4,16 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document(collection = "calificacion")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 public class Calificacion {
-    private String id;
-    private String idPaciente;
-    private String idEspecialista;
+    @MongoId
+    private ObjectId id;
+    private ObjectId idPaciente;
+    private ObjectId idEspecialista;
     private int puntuacion;
     private String comentario;
     private String fecha;

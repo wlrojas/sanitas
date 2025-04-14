@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document(collection = "usuarios")
 @Getter
@@ -13,7 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Usuario {
 
-    private String id;
+    @MongoId
+    private ObjectId id;
     private String nombre;
     private String password;
     private String rol;

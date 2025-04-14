@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.List;
 
@@ -13,8 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Especialista {
-    private String id;
-    private String idUsuario;
+    @MongoId
+    private ObjectId id;
+    private ObjectId idUsuario;
     private String descripcion;
     private String especialidad;
     private List<Disponibilidad> disponibilidad;
