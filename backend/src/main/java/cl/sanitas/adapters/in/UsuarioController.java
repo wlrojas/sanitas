@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     private final CrearUsuarioUseCase crearUsuarioUseCase;

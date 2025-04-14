@@ -2,7 +2,7 @@ package cl.sanitas.adapters.out;
 
 import cl.sanitas.application.port.UsuarioRepository;
 import cl.sanitas.domain.model.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,13 +12,12 @@ import java.util.Optional;
 public class UsuarioRepositoryMongo implements UsuarioRepository {
     private final SpringDataUsuarioRepository repository;
 
-    @Autowired
     public UsuarioRepositoryMongo(SpringDataUsuarioRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Optional<Usuario> buscarPorId(String id) {
+    public Optional<Usuario> buscarPorId(ObjectId id) {
         return repository.findById(id);
     }
 

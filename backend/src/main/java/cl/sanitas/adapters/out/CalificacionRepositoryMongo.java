@@ -2,19 +2,20 @@ package cl.sanitas.adapters.out;
 
 import cl.sanitas.application.port.CalificacionRepository;
 import cl.sanitas.domain.model.Calificacion;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CalificacionRepositoryMongo implements CalificacionRepository {
 
-    private final CalificacionRepository calificacionRepository;
+    private final SpringDataCalificacionRepository repository;
 
-    public CalificacionRepositoryMongo(CalificacionRepository calificacionRepository) {
-        this.calificacionRepository = calificacionRepository;
+    public CalificacionRepositoryMongo(SpringDataCalificacionRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public Calificacion findByIdEspecialista(String idEspecialista) {
-        return calificacionRepository.findByIdEspecialista(idEspecialista);
+    public Calificacion findByIdEspecialista(ObjectId idEspecialista) {
+        return repository.findByIdEspecialista(idEspecialista);
     }
 }
