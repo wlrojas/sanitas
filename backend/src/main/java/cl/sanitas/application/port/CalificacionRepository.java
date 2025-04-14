@@ -1,7 +1,8 @@
 package cl.sanitas.application.port;
 
 import cl.sanitas.domain.model.Calificacion;
+import org.bson.types.ObjectId;
 
 public interface CalificacionRepository {
-    Calificacion findByIdEspecialista(String idEspecialista);
+    Calificacion findByIdEspecialista(ObjectId idEspecialista);
 }
