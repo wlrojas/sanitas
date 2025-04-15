@@ -1,7 +1,8 @@
 package cl.sanitas.application.usecase;
 
+import cl.sanitas.adapters.in.dto.CalificacionDto;
+import cl.sanitas.adapters.in.mapper.CalificacionMapper;
 import cl.sanitas.application.port.CalificacionRepository;
-import cl.sanitas.domain.model.Calificacion;
 import org.bson.types.ObjectId;
 
 public class CalificacionUseCase {
@@ -12,7 +13,11 @@ public class CalificacionUseCase {
         this.calificacionRepository = calificacionRepository;
     }
 
-    public Calificacion buscarPorIdEspecialista(ObjectId idEspecialista) {
-        return calificacionRepository.findByIdEspecialista(idEspecialista);
+    public CalificacionDto buscarPorIdEspecialista(ObjectId idEspecialista) {
+        return CalificacionMapper.toDto(calificacionRepository.buscarPorIdEspecialista(idEspecialista));
+    }
+
+    public CalificacionDto guardarCalificacion(CalificacionDto calificacionDto) {
+        return CalificacionMapper.toDto(calificacionRepository.guardarCalificacion(CalificacionMapper.toEntity(calificacionDto)));
     }
 }

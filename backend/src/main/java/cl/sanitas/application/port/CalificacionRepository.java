@@ -4,5 +4,6 @@ import cl.sanitas.domain.model.Calificacion;
 import org.bson.types.ObjectId;
 
 public interface CalificacionRepository {
-    Calificacion findByIdEspecialista(ObjectId idEspecialista);
+    Calificacion buscarPorIdEspecialista(ObjectId idEspecialista);
+    Calificacion guardarCalificacion(Calificacion calificacion);
 }
