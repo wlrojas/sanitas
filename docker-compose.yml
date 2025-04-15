@@ -1,0 +1,8 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - MONGODB_URI=mongodb+srv://admin:admin1234@cluster0.2p1h1xk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
