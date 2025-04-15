@@ -15,7 +15,12 @@ public class CalificacionRepositoryMongo implements CalificacionRepository {
     }
 
     @Override
-    public Calificacion findByIdEspecialista(ObjectId idEspecialista) {
+    public Calificacion buscarPorIdEspecialista(ObjectId idEspecialista) {
         return repository.findByIdEspecialista(idEspecialista);
+    }
+
+    @Override
+    public Calificacion guardarCalificacion(Calificacion calificacion) {
+        return repository.save(calificacion);
     }
 }
