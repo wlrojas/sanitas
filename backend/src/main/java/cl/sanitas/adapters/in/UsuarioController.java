@@ -1,8 +1,8 @@
 package cl.sanitas.adapters.in;
 
+import cl.sanitas.adapters.in.dto.UsuarioDto;
 import cl.sanitas.application.usecase.BuscarUsuarioUseCase;
 import cl.sanitas.application.usecase.CrearUsuarioUseCase;
-import cl.sanitas.domain.model.Usuario;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,13 +25,13 @@ public class UsuarioController {
         this.buscarUsuarioUseCase = buscarUsuarioUseCase;
     }
 
-    @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario) {
+    @PostMapping("/save")
+    public UsuarioDto crearUsuario(@RequestBody UsuarioDto usuario) {
         return crearUsuarioUseCase.crearUsuario(usuario);
     }
 
     @GetMapping("/all")
-    public List<Usuario> listarUsuarios() {
+    public List<UsuarioDto> listarUsuarios() {
         return buscarUsuarioUseCase.findAll();
     }
 }

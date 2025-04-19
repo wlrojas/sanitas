@@ -6,16 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
-@Getter
-@Setter
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDto {
-    private String id;
-    private String nombre;
-    private String password;
-    private String rol;
-    private String email;
-    private Long telefono;
+@Getter
+@Setter
+@Builder
+public class DisponibilidadDto {
+    private String fecha;
+    private List<String> horas;
 }

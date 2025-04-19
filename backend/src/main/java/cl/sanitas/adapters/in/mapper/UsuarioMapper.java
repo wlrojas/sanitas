@@ -11,13 +11,26 @@ public class UsuarioMapper {
         if (model == null) {
            return null;
         }
-        return new UsuarioDto();
+        return UsuarioDto.builder()
+                .id(model.getId().toHexString())
+                .nombre(model.getNombre())
+                .email(model.getEmail())
+                .password(model.getPassword())
+                .telefono(model.getTelefono())
+                .rol(model.getRol())
+                .build();
     }
 
     public Usuario toModel(UsuarioDto dto) {
         if (dto == null) {
             return null;
         }
-        return new Usuario();
+        return Usuario.builder()
+                .nombre(dto.getNombre())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .telefono(dto.getTelefono())
+                .rol(dto.getRol())
+                .build();
     }
 }

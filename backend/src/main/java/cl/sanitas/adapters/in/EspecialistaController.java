@@ -1,7 +1,7 @@
 package cl.sanitas.adapters.in;
 
+import cl.sanitas.adapters.in.dto.EspecialistaDto;
 import cl.sanitas.application.usecase.BuscarEspecialistaUseCase;
-import cl.sanitas.domain.model.Especialista;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +20,7 @@ public class EspecialistaController {
     }
 
     @GetMapping("/all")
-    public List<Especialista> buscarEspecialistas(@RequestParam(required = false) String nombre) {
-        if (nombre == null) {
-            return buscarEspecialista.buscarTodos();
-        }
-        return buscarEspecialista.buscarEspecialistasPorNombre(nombre);
+    public List<EspecialistaDto> buscarEspecialistas(@RequestParam(required = false, defaultValue = "") String filtro) {
+        return buscarEspecialista.buscarTodos(filtro);
     }
 }
