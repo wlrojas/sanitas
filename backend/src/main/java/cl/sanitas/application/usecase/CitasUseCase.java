@@ -4,9 +4,11 @@ import cl.sanitas.adapters.in.dto.CitaDto;
 import cl.sanitas.adapters.in.mapper.CitaMapper;
 import cl.sanitas.application.port.CitasRepository;
 import org.bson.types.ObjectId;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CitasUseCase {
     private final CitasRepository citasRepository;
 

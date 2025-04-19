@@ -4,7 +4,9 @@ import cl.sanitas.adapters.in.dto.HistorialMedicoDto;
 import cl.sanitas.adapters.in.mapper.HistorialMedicoMapper;
 import cl.sanitas.application.port.HistorialMedicoRepository;
 import org.bson.types.ObjectId;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HistorialMedicoUseCase {
 
     private final HistorialMedicoRepository historialMedicoRepository;
