@@ -10,5 +10,5 @@ public interface EspecialistaRepository {
     Optional<Especialista> buscarPorId(ObjectId idEspecialista);
     List<Especialista> buscarPorEspecialidad(String especialidad);
     List<Especialista> buscarPorNombre(String nombre);
-    List<Especialista> buscarTodos();
+    List<Especialista> buscarTodos(String filtro);
 }

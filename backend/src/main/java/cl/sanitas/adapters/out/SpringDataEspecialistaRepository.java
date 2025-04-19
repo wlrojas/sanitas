@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public interface SpringDataEspecialistaRepository extends MongoRepository<Especialista, ObjectId> {
     Optional<Especialista> findByIdUsuario(ObjectId idUsuario);
-    List<Especialista> findAllByEspecialidad(String especialidad);
+    List<Especialista> findAllByEspecialidadContainingIgnoreCaseOrIdUsuarioIn(String nombre, List<ObjectId> idsUsuario);
+    List<Especialista> findAllByEspecialidadContainingIgnoreCase(String especialidad);
     List<Especialista> findAllByIdUsuarioIn(List<ObjectId> idUsuario);
 
 }

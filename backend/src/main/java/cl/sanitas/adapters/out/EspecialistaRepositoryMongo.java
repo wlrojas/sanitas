@@ -28,7 +28,7 @@ public class EspecialistaRepositoryMongo implements EspecialistaRepository {
 
     @Override
     public List<Especialista> buscarPorEspecialidad(String especialidad) {
-        return especialistaRepository.findAllByEspecialidad(especialidad);
+        return especialistaRepository.findAllByEspecialidadContainingIgnoreCase(especialidad);
     }
 
     @Override
@@ -40,7 +40,10 @@ public class EspecialistaRepositoryMongo implements EspecialistaRepository {
     }
 
     @Override
-    public List<Especialista> buscarTodos() {
-        return especialistaRepository.findAll();
+    public List<Especialista> buscarTodos(String filtro) {
+        List<ObjectId> listaIdsUsuario = usuarioRepository.findAllByNombreContainingIgnoreCaseAndRol(filtro, ROL_ESPECIALISTA).stream()
+                .map(Usuario::getId)
+                .toList();
+        return especialistaRepository.findAllByEspecialidadContainingIgnoreCaseOrIdUsuarioIn(filtro, listaIdsUsuario);
     }
 }
