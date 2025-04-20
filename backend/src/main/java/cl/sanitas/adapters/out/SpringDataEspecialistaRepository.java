@@ -11,6 +11,5 @@ public interface SpringDataEspecialistaRepository extends MongoRepository<Especi
     Optional<Especialista> findByIdUsuario(ObjectId idUsuario);
     List<Especialista> findAllByEspecialidadContainingIgnoreCaseOrIdUsuarioIn(String nombre, List<ObjectId> idsUsuario);
     List<Especialista> findAllByEspecialidadContainingIgnoreCase(String especialidad);
-    List<Especialista> findAllByIdUsuarioIn(List<ObjectId> idUsuario);
 
 }

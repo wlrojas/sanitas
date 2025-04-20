@@ -11,4 +11,5 @@ public interface UsuarioRepository {
     Optional<Usuario> buscarPorEmail(String email);
     List<Usuario> buscarTodos();
     Usuario guardar(Usuario usuario);
+    List<Usuario> buscarTodosPorNombreYRol(String nombre, String rol);
 }

@@ -35,4 +35,9 @@ public class UsuarioRepositoryMongo implements UsuarioRepository {
     public Usuario guardar(Usuario usuario) {
         return repository.save(usuario);
     }
+
+    @Override
+    public List<Usuario> buscarTodosPorNombreYRol(String nombre, String rol) {
+        return repository.findAllByNombreContainingIgnoreCaseAndRol(nombre, rol);
+    }
 }

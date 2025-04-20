@@ -1,25 +1,33 @@
 package cl.sanitas.adapters.in.mapper;
 
 import cl.sanitas.adapters.in.dto.DisponibilidadDto;
+import cl.sanitas.adapters.in.dto.EspecialistaCreacionDto;
 import cl.sanitas.adapters.in.dto.EspecialistaDto;
 import cl.sanitas.domain.model.Disponibilidad;
 import cl.sanitas.domain.model.Especialista;
+import cl.sanitas.domain.model.Usuario;
 import lombok.experimental.UtilityClass;
-import org.bson.types.ObjectId;
 
 import java.util.List;
 
 @UtilityClass
 public class EspecialistaMapper {
-    public Especialista toModel(EspecialistaDto dto) {
-        if (dto == null) {
+    public Especialista toModel(EspecialistaDto especialistaDto, Usuario usuario) {
+        if (especialistaDto == null || usuario == null) {
             return null;
         }
         return Especialista.builder()
-                .idUsuario(new ObjectId(dto.getIdUsuario()))
-                .descripcion(dto.getDescripcion())
-                .disponibilidad(toModel(dto.getDisponibilidad()))
-                .especialidad(dto.getEspecialidad())
+                .idUsuario(usuario.getId())
+                .descripcion(especialistaDto.getDescripcion())
+                .especialidad(especialistaDto.getEspecialidad())
+                .disponibilidad(toModel(especialistaDto.getDisponibilidad()))
+                .build();
+    }
+
+    public EspecialistaCreacionDto toDto(Especialista especialista, Usuario usuario) {
+        return EspecialistaCreacionDto.builder()
+                .datosUsuario(UsuarioMapper.toDto(usuario))
+                .datosEspecialista(EspecialistaMapper.toDto(especialista))
                 .build();
     }
 
