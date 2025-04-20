@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
 version: '3.8'
 
->>>>>>> Stashed changes
 services:
   backend:
     build: ./backend
@@ -12,9 +7,6 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-<<<<<<< Updated upstream
-      - MONGODB_URI=mongodb+srv://admin:admin1234@cluster0.2p1h1xk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-=======
       - MONGODB_URI=mongodb+srv://admin:admin1234@cluster0.2p1h1xk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
     networks:
       - sanitas-network
@@ -33,5 +25,3 @@ services:
 networks:
   sanitas-network:
     driver: bridge
->>>>>>> Stashed changes
->>>>>>> Stashed changes
