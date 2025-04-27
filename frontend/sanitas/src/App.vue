@@ -5,5 +5,4 @@
 </template>
 
 <script setup>
-// no hace falta nada aquí
 </script>

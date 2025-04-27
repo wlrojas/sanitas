@@ -18,6 +18,7 @@
     "vuetify": "^3.8.0-beta.0"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "@vitejs/plugin-vue": "^5.2.1",
     "sass": "^1.86.3",
     "sass-loader": "^10.5.2",
