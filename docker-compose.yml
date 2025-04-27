@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   backend:
     build: ./backend
@@ -6,3 +8,20 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - MONGODB_URI=mongodb+srv://admin:admin1234@cluster0.2p1h1xk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+    networks:
+      - sanitas-network
+
+  frontend:
+    build:
+      context: ./frontend/sanitas
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - sanitas-network
+
+networks:
+  sanitas-network:
+    driver: bridge
