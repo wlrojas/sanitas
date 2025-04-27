@@ -17,7 +17,7 @@
           <v-btn color="primary" class="ma-2" @click="$router.push('/login')">
             Iniciar sesión
           </v-btn>
-          <v-btn color="secondary" outlined class="ma-2" @click="$router.push('/register')">
+          <v-btn color="secondary" outlined class="ma-2" @click="$router.push('/registro')">
             Registrarse
           </v-btn>
         </v-col>

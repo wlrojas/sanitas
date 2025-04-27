@@ -4,13 +4,15 @@ import IniciarSesion from '../views/IniciarSesion.vue'
 import Registro from '../views/Registro.vue'
 import Busqueda from '../views/Busqueda.vue'
 import Perfil from '../views/Perfil.vue'
+import MenuPrincipal from '@/views/MenuPrincipal.vue';
 
 const routes = [
     { path: '/', component: Inicio },
     { path: '/login', component: IniciarSesion },
     { path: '/registro', component: Registro },
     { path: '/busqueda', component: Busqueda, meta: {requiereAuth: false} },
-    { path: '/pefil/:id', component: Perfil, meta: { requiereAuth: false } },
+    { path: '/perfil/:id', component: Perfil, meta: { requiereAuth: false } },
+    { path: '/menu', component: MenuPrincipal, meta: { requiereAuth: false } },
 ]
 
 const router = createRouter({
