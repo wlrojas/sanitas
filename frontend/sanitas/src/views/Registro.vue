@@ -41,7 +41,7 @@ const passwordVerify = ref('')
               </v-col>
               <!--Botones para confirmar el registro o para cancelar y volver -->
               <v-col cols="12" class="d-flex justify-center">
-                <v-btn type="submit" color="primary" class="ma-2" @click="$router.push('/')">
+                <v-btn type="submit" color="primary" class="ma-2" @click="$router.push('/menu')">
                   Registrarse
                 </v-btn>
                 <v-btn color="secondary" outlined class="ma-2" @click="$router.push('/')">
