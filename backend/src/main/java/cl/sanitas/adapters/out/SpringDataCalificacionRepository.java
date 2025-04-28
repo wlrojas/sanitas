@@ -4,6 +4,8 @@ import cl.sanitas.domain.model.Calificacion;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
 public interface SpringDataCalificacionRepository extends MongoRepository<Calificacion, ObjectId> {
-    Calificacion findByIdEspecialista(ObjectId idEspecialista);
+    List<Calificacion> findByIdEspecialista(ObjectId idEspecialista);
 }

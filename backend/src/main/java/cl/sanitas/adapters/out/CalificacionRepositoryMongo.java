@@ -5,6 +5,8 @@ import cl.sanitas.domain.model.Calificacion;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class CalificacionRepositoryMongo implements CalificacionRepository {
 
@@ -15,7 +17,7 @@ public class CalificacionRepositoryMongo implements CalificacionRepository {
     }
 
     @Override
-    public Calificacion buscarPorIdEspecialista(ObjectId idEspecialista) {
+    public List<Calificacion> buscarPorIdEspecialista(ObjectId idEspecialista) {
         return repository.findByIdEspecialista(idEspecialista);
     }
 
