@@ -1,30 +1,29 @@
 <script setup>
 import { ref } from 'vue'
 //Inicialización de variables para mostrar en pantalla, traer desde BD
-const name = ref('Jhon')
-const lastName = ref('Doe')
-const email = ref('jh.doe@duocuc.cl')
+let name = ref('Jhon Doe')
+let email = ref('jh.doe@duocuc.cl')
+let phone = ref(12345678)
 
 //Inicialización de variables de entrada para editar los datos de usuario
-const editName = ref('')
-const editLastName = ref('')
-const editEmail = ref('')
+let editName = ref('')
+let editEmail = ref('')
+let editPhone = ref()
+
 //Variable para modo edición de datos de perfil
 const editeMode = ref(false)
 //Funcion para iniciar el modo edicion de datos
 function startEdition() {
   editName.value = name.value
-  editLastName.value = lastName.value
   editEmail.value = email.value
-
+  editPhone.value = phone.value
   editeMode.value = true
 }
 //Guarda los cambios, se debera actualizar la BD
 function saveChanges() {
   name.value = editName.value
-  lastName.value = editLastName.value
   email.value = editEmail.value
-
+  phone.value = editPhone.value
   editeMode.value = false
 }
 //Cancelar modo edicion y se deja los datos como estaban
@@ -74,8 +73,18 @@ function cancelEdition() {
                 <div v-else>
                   <v-text-field v-model="editEmail" label="Correo electrónico" type="email" dense outlined />
                 </div>
-
               </v-col>
+
+              <v-col cols="12">
+                <label>Teléfono (+56 9)</label>
+                <div v-if="!editeMode">
+                  <h3>{{ email }}</h3>
+                </div>
+                <div v-else>
+                  <v-text-field v-model="editEmail" label="Teléfono (+56 9)" type="email" dense outlined />
+                </div>
+              </v-col>
+
               <!--Botones para modificar el perfil, ir a la seccion documentos medicos  o volver -->
 
               <!-- Botones para editar perfil -->
