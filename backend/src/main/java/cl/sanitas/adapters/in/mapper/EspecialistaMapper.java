@@ -3,6 +3,7 @@ package cl.sanitas.adapters.in.mapper;
 import cl.sanitas.adapters.in.dto.DisponibilidadDto;
 import cl.sanitas.adapters.in.dto.EspecialistaCreacionDto;
 import cl.sanitas.adapters.in.dto.EspecialistaDto;
+import cl.sanitas.adapters.in.dto.EspecialistaResumenDto;
 import cl.sanitas.domain.model.Disponibilidad;
 import cl.sanitas.domain.model.Especialista;
 import cl.sanitas.domain.model.Usuario;
@@ -12,6 +13,22 @@ import java.util.List;
 
 @UtilityClass
 public class EspecialistaMapper {
+
+    public EspecialistaResumenDto toDto(Usuario usuario, Especialista especialista, double calificacion) {
+        EspecialistaResumenDto.EspecialistaResumenDtoBuilder especialistaBuilder = EspecialistaResumenDto.builder();
+        if (usuario == null || especialista == null) {
+            return null;
+        }
+        return especialistaBuilder
+                .idUsuario(usuario.getId().toHexString())
+                .idEspecialista(especialista.getId().toHexString())
+                .nombre(usuario.getNombre())
+                .descripcion(especialista.getDescripcion())
+                .especialidad(especialista.getEspecialidad())
+                .puntuacion(calificacion)
+                .build();
+    }
+
     public Especialista toModel(EspecialistaDto especialistaDto, Usuario usuario) {
         if (especialistaDto == null || usuario == null) {
             return null;

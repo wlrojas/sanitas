@@ -6,6 +6,8 @@ import cl.sanitas.application.port.CalificacionRepository;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CalificacionUseCase {
 
@@ -15,8 +17,9 @@ public class CalificacionUseCase {
         this.calificacionRepository = calificacionRepository;
     }
 
-    public CalificacionDto buscarPorIdEspecialista(ObjectId idEspecialista) {
-        return CalificacionMapper.toDto(calificacionRepository.buscarPorIdEspecialista(idEspecialista));
+    public List<CalificacionDto> buscarPorIdEspecialista(ObjectId idEspecialista) {
+        return calificacionRepository.buscarPorIdEspecialista(idEspecialista).stream()
+                .map(CalificacionMapper::toDto).toList();
     }
 
     public CalificacionDto guardarCalificacion(CalificacionDto calificacionDto) {

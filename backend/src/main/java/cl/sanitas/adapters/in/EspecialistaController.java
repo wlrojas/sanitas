@@ -1,7 +1,7 @@
 package cl.sanitas.adapters.in;
 
 import cl.sanitas.adapters.in.dto.EspecialistaCreacionDto;
-import cl.sanitas.adapters.in.dto.EspecialistaDto;
+import cl.sanitas.adapters.in.dto.EspecialistaResumenDto;
 import cl.sanitas.application.usecase.EspecialistaUseCase;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ public class EspecialistaController {
     }
 
     @GetMapping("/all")
-    public List<EspecialistaDto> buscarEspecialistas(@RequestParam(required = false, defaultValue = "") String filtro) {
+    public List<EspecialistaResumenDto> buscarEspecialistas(@RequestParam(required = false, defaultValue = "") String filtro) {
         return buscarEspecialista.buscarTodos(filtro);
     }
 
