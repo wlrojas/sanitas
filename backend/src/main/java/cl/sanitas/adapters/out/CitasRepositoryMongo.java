@@ -17,12 +17,17 @@ public class CitasRepositoryMongo implements CitasRepository {
     }
 
     @Override
-    public List<Cita> buscarCitasPorPaciente(ObjectId idPaciente) {
-        return repository.findAllByIdPaciente(idPaciente);
+    public List<Cita> buscarCitasPorPaciente(ObjectId idPaciente, String status) {
+        return repository.findAllByIdPacienteAndStatus(idPaciente, status);
     }
 
     @Override
-    public List<Cita> buscarCitasPorEspecialista(ObjectId idEspecialista) {
-        return repository.findAllByIdEspecialista(idEspecialista);
+    public List<Cita> buscarCitasPorEspecialista(ObjectId idEspecialista, String status) {
+        return repository.findAllByIdEspecialistaAndStatus(idEspecialista, status);
+    }
+
+    @Override
+    public Cita guardarCita(Cita cita) {
+        return repository.save(cita);
     }
 }

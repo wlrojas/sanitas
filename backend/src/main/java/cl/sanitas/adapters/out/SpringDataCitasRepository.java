@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface SpringDataCitasRepository extends MongoRepository<Cita, ObjectId> {
-    List<Cita> findAllByIdEspecialista(ObjectId idEspecialista);
-    List<Cita> findAllByIdPaciente(ObjectId idPaciente);
+    List<Cita> findAllByIdEspecialistaAndStatus(ObjectId idEspecialista, String status);
+    List<Cita> findAllByIdPacienteAndStatus(ObjectId idPaciente, String status);
 }

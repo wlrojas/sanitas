@@ -4,9 +4,12 @@ import cl.sanitas.adapters.in.dto.UsuarioDto;
 import cl.sanitas.application.usecase.BuscarUsuarioUseCase;
 import cl.sanitas.application.usecase.CrearUsuarioUseCase;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +38,15 @@ public class UsuarioController {
     @GetMapping("/all")
     public List<UsuarioDto> listarUsuarios() {
         return buscarUsuarioUseCase.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public UsuarioDto buscarUsuarioPorId(@PathVariable ObjectId id) {
+        return buscarUsuarioUseCase.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    public UsuarioDto actualizarUsuario(@PathVariable ObjectId id, @RequestBody UsuarioDto usuario) {
+        return crearUsuarioUseCase.actualizarUsuario(usuario, id);
     }
 }

@@ -18,8 +18,8 @@ public class EspecialistaRepositoryMongo implements EspecialistaRepository {
     }
 
     @Override
-    public Optional<Especialista> buscarPorId(ObjectId isUsuario) {
-        return especialistaRepository.findByIdUsuario(isUsuario);
+    public Optional<Especialista> buscarPorId(ObjectId idEspecialista) {
+        return especialistaRepository.findById(idEspecialista);
     }
 
     @Override
