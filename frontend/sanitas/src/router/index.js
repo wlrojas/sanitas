@@ -9,15 +9,15 @@ import DocumentosMedicos from '@/views/DocumentosMedicos.vue';
 import RegistroEspecialista from '@/views/RegistroEspecialista.vue';
 
 const routes = [
-    { path: '/', component: Inicio },
-    { path: '/login', component: IniciarSesion },
+    { path: '/', component: Inicio, name: 'Inicio' },
+    { path: '/login', component: IniciarSesion, name: 'login' },
     { path: '/registro', component: Registro },
-    { path: '/busqueda', component: Busqueda, meta: {requiereAuth: false} },
-    { path: '/perfil', component: Perfil, meta: {requiereAuth: false} },
-    { path: '/documentos-medicos', component: DocumentosMedicos, meta: {requiereAuth: false} },
-    { path: '/perfil/:id', component: Perfil, meta: { requiereAuth: false } },
-    { path: '/menu', component: MenuPrincipal, meta: { requiereAuth: false } },
-    { path: '/registro-especialista', component: RegistroEspecialista, meta: { requiereAuth: false } },
+    { path: '/busqueda', component: Busqueda, meta: {requiereAuth: true} },
+    { path: '/perfil', component: Perfil, meta: {requiereAuth: true} },
+    { path: '/documentos-medicos', component: DocumentosMedicos, meta: {requiereAuth: true} },
+    { path: '/perfil/:id', component: Perfil, meta: { requiereAuth: true } },
+    { path: '/menu', component: MenuPrincipal, meta: { requiereAuth: true } },
+    { path: '/registro-especialista', component: RegistroEspecialista, meta: { requiereAuth: true } },
 ]
 
 const router = createRouter({
@@ -25,12 +25,12 @@ const router = createRouter({
     routes
 })
 
-//router.beforeEach((to, from, next) => {
-//    const token = localStorage.getItem('token')
-//    if (to.meta.requiereAuth && !token) {
-//        return next({ name: 'login' })
-//    }
-//    next()
-//})
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token')
+    if (to.meta.requiereAuth && !token) {
+        return next({ name: 'login' })
+    }
+    next()
+})
 
 export default router
