@@ -1,28 +1,29 @@
 <template>
   <v-card class="mx-auto my-4" max-width="400">
-    <!-- Imagen de avatar -->
+    <!-- Imagen de avatar con alt -->
     <v-img
         :src="avatar"
+        alt="Avatar de {{ especialista.nombre }}"
         height="200"
         class="white--text align-end"
     >
-      <!-- Opcional: overlay con nombre -->
+      <!-- Overlay con el nombre -->
       <v-card-title class="bg-black bg-opacity-50">
         {{ especialista.nombre }}
       </v-card-title>
     </v-img>
 
-    <!-- Especialidad debajo de la imagen -->
+    <!-- Especialidad -->
     <v-card-subtitle class="text-subtitle-1 px-4 pt-2">
       {{ especialista.especialidad }}
     </v-card-subtitle>
 
-    <!-- Descripción y puntuación -->
+    <!-- Descripción y puntuación con half-increments -->
     <v-card-text class="px-4">
       {{ especialista.descripcion }}
       <div class="mt-2 d-flex align-center">
         <v-rating
-            v-model="rating"
+            :model-value="rating"
             readonly
             dense
             size="20"
@@ -32,7 +33,7 @@
       </div>
     </v-card-text>
 
-    <!-- Acción: ver perfil -->
+    <!-- Botón ver perfil usando la ruta 'perfil' -->
     <v-card-actions class="px-4">
       <v-spacer />
       <v-btn text @click="verPerfil">
@@ -43,11 +44,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import avatar from '@/assets/avatar.png'
 
-// Prop de especialista según contrato
+// Definición de props
 const props = defineProps({
   especialista: {
     type: Object,
@@ -55,14 +56,15 @@ const props = defineProps({
   }
 })
 
-// Rating local basado en la puntuación (decimal soportado con half-increments)
-const rating = ref(props.especialista.puntuacion)
+// Computed para que siempre refleje la puntuación actual
+const rating = computed(() => props.especialista.puntuacion)
+
 const router = useRouter()
 
 function verPerfil() {
   router.push({
-    name: 'Perfil',
-    params: {id: props.especialista.idEspecialista}
+    name: 'perfil',
+    params: { id: props.especialista.idEspecialista }
   })
 }
 </script>

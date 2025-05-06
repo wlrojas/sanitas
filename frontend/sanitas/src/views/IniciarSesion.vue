@@ -59,29 +59,20 @@ async function onSubmit() {
   error.value = null
   loading.value = true
   try {
-    // Enviar credenciales y obtener solo el token
     const response = await authService.login({email: email.value, password: password.value})
     const token = response.token
 
-    // Decodificar payload del JWT para extraer rol e idUsuario
     const payload = jwtDecode(token)
     const {rol, sub} = payload
 
-    // Guardar en localStorage para uso futuro
     localStorage.setItem('token', token)
     localStorage.setItem('rol', rol)
     localStorage.setItem('idUsuario', sub)
-    console.log(token, rol, sub)
 
-    // Configurar header Authorization para próximas peticiones
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
-    // Redirigir según rol extraído
-    if (rol === 'especialista') {
-      await router.push({name: 'Perfil', params: {id: sub}})
-    } else {
-      await router.push({name: 'Buscar'})
-    }
+    await router.push({name: 'menu', params: {id: sub}})
+
   } catch (e) {
     console.log(e)
     error.value = 'Correo o contraseña incorrectos.'

@@ -19,5 +19,11 @@ export default {
         console.log('[especialistaService] POST /especialistas/save', payload)
         return api.post('/especialistas/save', payload)
             .then(res => res.data)
+    },
+    async getByUsuario(idUsuario) {
+        const list = await this.buscar('')
+        const esp = list.find(e => e.idUsuario === idUsuario)
+        if (!esp) throw new Error('No eres un especialista registrado')
+        return esp
     }
 };
