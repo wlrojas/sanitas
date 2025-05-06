@@ -29,8 +29,8 @@ public class HistorialMedicoController {
     }
 
     @GetMapping("/{id}")
-    public HistorialMedicoDto getHistorialPorUsuario(@PathVariable ObjectId idPaciente) {
-        return historialMedicoUseCase.buscarPorIdPaciente(idPaciente);
+    public HistorialMedicoDto getHistorialPorUsuario(@PathVariable ObjectId id) {
+        return historialMedicoUseCase.buscarPorIdPaciente(id);
     }
 
     @PostMapping("/save")

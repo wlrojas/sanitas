@@ -25,10 +25,8 @@ public class CrearUsuarioUseCase {
         return UsuarioMapper.toDto(usuarioRepository.guardar(usuario));
     }
 
-    public UsuarioDto actualizarUsuario(UsuarioDto dto, ObjectId id) {
-        Usuario usuario = UsuarioMapper.toModel(dto);
-        usuario.setId(id);
-        return UsuarioMapper.toDto(usuarioRepository.guardar(usuario));
+    public void actualizarUsuario(UsuarioDto dto, ObjectId id) {
+        usuarioRepository.actualizarParcial(id, UsuarioMapper.toModel(dto));
     }
 }
 

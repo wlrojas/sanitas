@@ -3,8 +3,8 @@ package cl.sanitas.adapters.in;
 import cl.sanitas.adapters.in.dto.UsuarioDto;
 import cl.sanitas.application.usecase.BuscarUsuarioUseCase;
 import cl.sanitas.application.usecase.CrearUsuarioUseCase;
-import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/usuarios")
 @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000"})
@@ -46,7 +45,12 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public UsuarioDto actualizarUsuario(@PathVariable ObjectId id, @RequestBody UsuarioDto usuario) {
-        return crearUsuarioUseCase.actualizarUsuario(usuario, id);
+    public ResponseEntity<?> actualizarUsuario(@PathVariable ObjectId id, @RequestBody UsuarioDto usuario) {
+        try {
+            crearUsuarioUseCase.actualizarUsuario(usuario, id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

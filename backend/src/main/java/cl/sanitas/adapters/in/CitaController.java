@@ -27,7 +27,7 @@ public class CitaController {
     @GetMapping("/all/paciente")
     public List<CitaDto> buscarTodoPaciente(
             @RequestParam(name = "id") ObjectId idPaciente,
-            @RequestParam(required = false) String status) {
+            @RequestParam(required = false, defaultValue = "") String status) {
         return citasUseCase.buscarPorPaciente(idPaciente, status);
     }
 

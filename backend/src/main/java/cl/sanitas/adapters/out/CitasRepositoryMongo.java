@@ -18,12 +18,12 @@ public class CitasRepositoryMongo implements CitasRepository {
 
     @Override
     public List<Cita> buscarCitasPorPaciente(ObjectId idPaciente, String status) {
-        return repository.findAllByIdPacienteAndStatus(idPaciente, status);
+        return repository.findAllByIdPacienteAndStatusContainingIgnoreCase(idPaciente, status);
     }
 
     @Override
     public List<Cita> buscarCitasPorEspecialista(ObjectId idEspecialista, String status) {
-        return repository.findAllByIdEspecialistaAndStatus(idEspecialista, status);
+        return repository.findAllByIdEspecialistaAndStatusContainingIgnoreCase(idEspecialista, status);
     }
 
     @Override
