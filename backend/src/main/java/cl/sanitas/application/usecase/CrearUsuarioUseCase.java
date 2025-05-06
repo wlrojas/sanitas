@@ -4,6 +4,7 @@ import cl.sanitas.adapters.in.dto.UsuarioDto;
 import cl.sanitas.adapters.in.mapper.UsuarioMapper;
 import cl.sanitas.application.port.UsuarioRepository;
 import cl.sanitas.domain.model.Usuario;
+import org.bson.types.ObjectId;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,10 @@ public class CrearUsuarioUseCase {
         Usuario usuario = UsuarioMapper.toModel(dto);
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return UsuarioMapper.toDto(usuarioRepository.guardar(usuario));
+    }
+
+    public void actualizarUsuario(UsuarioDto dto, ObjectId id) {
+        usuarioRepository.actualizarParcial(id, UsuarioMapper.toModel(dto));
     }
 }
 

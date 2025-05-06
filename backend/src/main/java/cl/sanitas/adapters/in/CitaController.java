@@ -5,6 +5,8 @@ import cl.sanitas.application.usecase.CitasUseCase;
 import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +26,20 @@ public class CitaController {
 
     @GetMapping("/all/paciente")
     public List<CitaDto> buscarTodoPaciente(
-            @RequestParam(name = "id") ObjectId idPaciente) {
-        return citasUseCase.buscarPorPaciente(idPaciente);
+            @RequestParam(name = "id") ObjectId idPaciente,
+            @RequestParam(required = false, defaultValue = "") String status) {
+        return citasUseCase.buscarPorPaciente(idPaciente, status);
     }
 
     @GetMapping("/all/especialista")
     public List<CitaDto> buscarTodoEspecialista(
-            @RequestParam(name = "id") ObjectId idEspecialista) {
-        return citasUseCase.buscarPorEspecialista(idEspecialista);
+            @RequestParam(name = "id") ObjectId idEspecialista,
+            @RequestParam(required = false) String status) {
+        return citasUseCase.buscarPorEspecialista(idEspecialista, status);
+    }
+
+    @PostMapping("/save")
+    public CitaDto guardarCita(@RequestBody CitaDto citaDto) {
+        return citasUseCase.guardarCita(citaDto);
     }
 }

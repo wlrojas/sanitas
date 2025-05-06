@@ -12,4 +12,5 @@ public interface UsuarioRepository {
     List<Usuario> buscarTodos();
     Usuario guardar(Usuario usuario);
     List<Usuario> buscarTodosPorNombreYRol(String nombre, String rol);
+    void actualizarParcial(ObjectId id, Usuario usuario);
 }

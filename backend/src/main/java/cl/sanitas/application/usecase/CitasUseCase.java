@@ -16,11 +16,15 @@ public class CitasUseCase {
         this.citasRepository = citasRepository;
     }
 
-    public List<CitaDto> buscarPorPaciente(ObjectId idPaciente) {
-        return citasRepository.buscarCitasPorPaciente(idPaciente).stream().map(CitaMapper::toDto).toList();
+    public List<CitaDto> buscarPorPaciente(ObjectId idPaciente, String status) {
+        return citasRepository.buscarCitasPorPaciente(idPaciente, status).stream().map(CitaMapper::toDto).toList();
     }
 
-    public List<CitaDto> buscarPorEspecialista(ObjectId idEspecialista) {
-        return citasRepository.buscarCitasPorEspecialista(idEspecialista).stream().map(CitaMapper::toDto).toList();
+    public List<CitaDto> buscarPorEspecialista(ObjectId idEspecialista, String status) {
+        return citasRepository.buscarCitasPorEspecialista(idEspecialista, status).stream().map(CitaMapper::toDto).toList();
+    }
+
+    public CitaDto guardarCita(CitaDto citaDto) {
+        return CitaMapper.toDto(citasRepository.guardarCita(CitaMapper.toEntity(citaDto)));
     }
 }

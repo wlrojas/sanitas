@@ -8,5 +8,22 @@ export default {
         });
         console.log(resp.data);
         return resp.data;
+    },
+
+    /**
+     * Guarda un nuevo especialista (y su usuario asociado)
+     * @param {{ datosUsuario: { nombre: string, password: string, rol: string, email: string, telefono: number }, datosEspecialista: { especialidad: string, descripcion: string } }} payload
+     * @returns {Promise<Object>} datos del especialista creado
+     */
+    async save(payload) {
+        console.log('[especialistaService] POST /especialistas/save', payload)
+        return api.post('/especialistas/save', payload)
+            .then(res => res.data)
+    },
+    async getByUsuario(idUsuario) {
+        const list = await this.buscar('')
+        const esp = list.find(e => e.idUsuario === idUsuario)
+        if (!esp) throw new Error('No eres un especialista registrado')
+        return esp
     }
 };

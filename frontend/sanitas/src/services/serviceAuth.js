@@ -1,8 +1,8 @@
 import api from '../plugins/axios.js'
 
 export default {
-    login({ mail, password }) {
-        return api.post('/usuarios/login', { mail, password })
+    login({ email, password }) {
+        return api.post('/inicio/login', { email, password })
             .then(res => res.data)
     }
 }

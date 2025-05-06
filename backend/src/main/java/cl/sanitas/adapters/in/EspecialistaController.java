@@ -1,10 +1,13 @@
 package cl.sanitas.adapters.in;
 
+import cl.sanitas.adapters.in.dto.DisponibilidadDto;
 import cl.sanitas.adapters.in.dto.EspecialistaCreacionDto;
 import cl.sanitas.adapters.in.dto.EspecialistaResumenDto;
 import cl.sanitas.application.usecase.EspecialistaUseCase;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,5 +35,10 @@ public class EspecialistaController {
     @PostMapping("/save")
     public EspecialistaCreacionDto guardar(@RequestBody EspecialistaCreacionDto dto) {
         return buscarEspecialista.crearEspecialista(dto);
+    }
+
+    @GetMapping("/{idEspecialista}/disponibilidad")
+    public List<DisponibilidadDto> obtenerDisponibilidad(@PathVariable("idEspecialista") ObjectId idEspecialista) {
+        return buscarEspecialista.disponibilidadEspecialista(idEspecialista);
     }
 }

@@ -94,4 +94,11 @@ public class EspecialistaMapper {
         }
         return modelList.stream().map(EspecialistaMapper::toDto).toList();
     }
+
+    public List<DisponibilidadDto> disponibilidad(Especialista model) {
+        if (model == null) {
+            return null;
+        }
+        return EspecialistaMapper.toDto(model.getDisponibilidad());
+    }
 }
