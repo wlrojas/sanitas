@@ -1,46 +1,52 @@
 <template>
-  <v-container fluid class="pa-8">
-    <!-- 1) Fila con botón Atrás y campo de búsqueda -->
-    <v-row class="mb-6" align="center">
-      <v-col cols="auto">
-        <v-btn icon @click="goBack">
-          <v-icon>mdi-arrow-left</v-icon>
-        </v-btn>
-      </v-col>
-      <v-col>
-        <v-text-field
-            v-model="termino"
-            label="Buscar especialistas..."
-            placeholder="Escriba nombre o especialidad"
-            outlined
-            clearable
-            dense
-            style="width: 100%;"
-            @input="onInput"
-        />
-      </v-col>
-    </v-row>
+  <!-- Hero con fondo y search bar fija -->
+  <v-sheet min-height="40vh" class="hero">
+    <v-img src="/assets/health-bg.jpg" class="hero-img" cover></v-img>
+    <v-overlay absolute opacity="0.6" color="#000"></v-overlay>
 
-    <!-- 2) Mensaje “no hay resultados” -->
-    <v-row
-        v-if="termino.trim() && especialistas.length === 0"
-        justify="center"
-    >
-      <v-col cols="12" class="text-center no-results">
+    <v-container fluid class="pa-0 d-flex align-center justify-center">
+      <v-row align="center" class="search-row">
+        <v-col cols="auto">
+          <v-btn icon large color="white" @click="goBack">
+            <v-icon>mdi-arrow-left</v-icon>
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="8" md="6">
+          <v-text-field
+              v-model="termino"
+              label="Buscar especialistas..."
+              placeholder="Escriba nombre o especialidad"
+              outlined
+              clearable
+              dense
+              hide-details
+              @input="onInput"
+              class="search-field white--text"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-sheet>
+
+  <!-- Resultados de búsqueda -->
+  <v-container fluid class="results-container">
+    <v-row v-if="termino.trim() && especialistas.length === 0" justify="center">
+      <v-col cols="12" class="no-results text-center">
         No se encontraron especialistas.
       </v-col>
     </v-row>
-
-    <!-- 3) Grilla fija de 3 columnas -->
-    <div v-else class="cards-grid">
-      <div
+    <v-row v-else dense justify="center" class="cards-grid">
+      <v-col
           v-for="esp in especialistas"
           :key="esp.idEspecialista"
-          class="card-wrap"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
       >
         <TarjetaEspecialista :especialista="esp" />
-      </div>
-    </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -55,17 +61,14 @@ const router = useRouter()
 const termino = ref('')
 const especialistas = ref([])
 
-// Función para volver atrás
 function goBack() {
   router.back()
 }
 
-// Carga inicial de todos los especialistas
 onMounted(async () => {
   especialistas.value = await servicioEspecialistas.buscar('')
 })
 
-// Debounce para filtrar conforme escribes
 const buscar = debounce(async q => {
   especialistas.value = await servicioEspecialistas.buscar(q.trim())
 }, 300)
@@ -76,23 +79,36 @@ function onInput() {
 </script>
 
 <style scoped>
-.no-results {
-  margin: 32px 0;
-  font-size: 1.1rem;
-  color: rgba(0, 0, 0, 0.6);
-  text-align: center;
+.hero {
+  position: relative;
+  overflow-y: auto;
 }
-
-/* Grilla fija de 3 columnas de 300px */
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.search-row {
+  width: 90vw;
+  max-width: 800px;
+}
+.search-field .v-input__control {
+  background: rgba(255,255,255,0.9);
+}
+.results-container {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 300px);
-  gap: 24px;
-  justify-content: center;
+  width: 90vw;
+  max-width: 1200px;
 }
-
-/* Cada tarjeta siempre 300px de ancho */
-.card-wrap {
-  width: 300px;
+.no-results {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 24px 0;
 }
 </style>

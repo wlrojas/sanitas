@@ -1,18 +1,23 @@
 <template>
-  <v-container class="fill-height pa-8" fluid>
-    <v-row class="d-flex align-center justify-center fill-height">
-      <v-col cols="12" md="8" lg="6">
-        <v-form @submit.prevent="onSubmit" ref="form">
-          <v-card elevation="4" class="pa-8">
-            <v-card-title class="justify-center text-h5 mb-4">
-              Registro de Cuenta
-            </v-card-title>
+  <v-sheet min-height="100vh" class="hero">
+    <!-- Imagen de fondo y overlay -->
+    <v-img src="/assets/health-bg.jpg" class="hero-img" cover></v-img>
+    <v-overlay absolute opacity="0.6" color="#000"></v-overlay>
 
-            <v-card-text>
-              <v-alert v-if="error" type="error" dense class="mb-4">
-                {{ error }}
-              </v-alert>
+    <!-- Contenedor centrado para el formulario -->
+    <v-container fluid class="pa-0 d-flex align-center justify-center">
+      <v-col cols="12">
+        <v-card elevation="8" class="pa-8 registration-card">
+          <v-card-title class="justify-center text-h5 mb-6">
+            Registro de Cuenta
+          </v-card-title>
 
+          <v-card-text>
+            <v-alert v-if="error" type="error" dense class="mb-4">
+              {{ error }}
+            </v-alert>
+
+            <v-form @submit.prevent="onSubmit" ref="form">
               <v-row dense>
                 <!-- Selección de rol -->
                 <v-col cols="12">
@@ -95,31 +100,33 @@
                   />
                 </v-col>
               </v-row>
-            </v-card-text>
 
-            <v-card-actions class="d-flex justify-center">
-              <v-btn
-                  type="submit"
-                  color="primary"
-                  :loading="loading"
-                  class="ma-2"
-              >
-                Registrarse
-              </v-btn>
-              <v-btn
-                  text
-                  color="secondary"
-                  class="ma-2"
-                  @click="$router.push({ name: 'Inicio' })"
-              >
-                Volver
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-form>
+              <v-card-actions class="d-flex justify-center mt-6">
+                <v-btn
+                    type="submit"
+                    color="primary"
+                    :loading="loading"
+                    large
+                    class="ma-2"
+                >
+                  Registrarse
+                </v-btn>
+                <v-btn
+                    text
+                    color="secondary"
+                    large
+                    class="ma-2"
+                    @click="$router.push({ name: 'Inicio' })"
+                >
+                  Volver
+                </v-btn>
+              </v-card-actions>
+            </v-form>
+          </v-card-text>
+        </v-card>
       </v-col>
-    </v-row>
-  </v-container>
+    </v-container>
+  </v-sheet>
 </template>
 
 <script setup>
@@ -203,10 +210,33 @@ async function onSubmit() {
 </script>
 
 <style scoped>
-.fill-height {
-  height: 100vh;
+.hero {
+  position: relative;
+  overflow-y: auto;
 }
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.registration-card {
+  border-radius: 1.5rem;
+}
+
+.fill-height {
+  height: 100%;
+}
+
 .mb-4 {
   margin-bottom: 16px;
+}
+
+.mt-6 {
+  margin-top: 24px;
 }
 </style>
